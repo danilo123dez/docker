@@ -9,7 +9,7 @@
 
 <h1> Não tem o docker instalado ? instale para o ubuntu </h1>
 
-<p style="color:#C8C8C8"> Rode todos os comandos em ordem. </p>
+<p style="color:&#x1F34E;"> Rode todos os comandos em ordem. </p>
 
 <p> sudo apt-get update </p>
 <p> sudo apt-get install \
