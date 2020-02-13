@@ -23,7 +23,7 @@ Para começar, clone o projeto e entre na pasta raiz dele
 Primeiro vamos criar a imagem do nosso container. Rode o seguinte comando:
 
 ```
-docker build . -t nome da imagem
+docker build . -t nome_da_imagem
 ```
 
 Este processo Este processo pode levar algum tempo, vai depender da velocidade da sua internet.
@@ -31,7 +31,7 @@ Este processo Este processo pode levar algum tempo, vai depender da velocidade d
 Em seguida vamos criar o container do nosso projeto. Acesse a pasta do seu projeto que queria rodar e na raiz dele é sempre bom ter uma pasta "www/" que irá conter os arquivos do projeto. Rode o seguinte comando:
 
 ```
-docker run -it -p 80:80 -v $(pwd)/www:/var/www/html --name Nome-container Nome-imagem /bin/bash
+docker run -it -p 80:80 -v $(pwd)/www:/var/www/html --name nome_container nome_da_imagem /bin/bash
 ```
 
 Note que a parte "$(pwd)/www" irá pegar o seu diretório atual e fazer com que ela linke com a pasta que roda os projetos dentro do container (pasta escolhida nas configurações de nginx). Caso não queria usar a pasta www, basta tira-la do código.
