@@ -36,6 +36,64 @@ docker run -it -p 80:80 -v $(pwd)/www:/var/www/html --name nome_container nome_d
 
 Note que a parte "$(pwd)/www" irá pegar o seu diretório atual e fazer com que ela linke com a pasta que roda os projetos dentro do container (pasta escolhida nas configurações de nginx). Caso não queria usar a pasta www, basta tira-la do código.
 
+Ao rodar esse comando você "entrará" no container automaticamente.
+
+### Acessando o container
+
+Quando você for acessar o container novamente, basta dar o comando:
+
+```
+docker ps -a
+```
+
+Ele irá lista todos os container criados, listando os ativos e os inativos (para listar apenas os ativas, rode o mesmo comando sem "-a").
+
+Com a lista de containers, copie o nome do seu container e rode o comando:
+
+```
+docker attach nome_container
+```
+
+### Configurações iniciais dentro do container
+
+Ao acessar o container rode os seguintes comandos:
+
+```
+service nginx start
+```
+
+```
+service php7.2-fpm start
+```
+
+Caso queira listar todos os serviços dentro do container rode o comando:
+
+```
+service --status-all
+```
+
+Esses serviços são para que o projeto fique rodando na sua maquina acessando pelo browser a url "localhost"
+
+### Projeto em laravel ? Como rodar ?
+
+Caso o projeto seja em laravel, dentro do container, acesse a pasta 
+
+```
+/etc/nginx/sites-available/
+```
+
+Lá terá um arquivo chamado app, você terá que edita-lo. Na linha que está escrito:
+
+```
+root /var/www/html;
+```
+
+**substitua por:**
+
+```
+root /var/www/html/public/;
+```
+
 ## 🔧 Instalação do Docker <a name = "installdocker"></a>
 
 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository"> Instale o docker aqui! </a>
