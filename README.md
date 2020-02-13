@@ -36,8 +36,6 @@ docker run -it -p 80:80 -v $(pwd)/www:/var/www/html --name nome_container nome_d
 
 Note que a parte "$(pwd)/www" irá pegar o seu diretório atual e fazer com que ela linke com a pasta que roda os projetos dentro do container (pasta escolhida nas configurações de nginx). Caso não queria usar a pasta www, basta tira-la do código.
 
-End with an example of getting some data out of the system or using it for a little demo.
-
 ## 🔧 Instalação do Docker <a name = "installdocker"></a>
 
 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository"> Instale o docker aqui! </a>
