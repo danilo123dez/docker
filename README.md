@@ -40,4 +40,6 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## 🔧 Instalação do Docker <a name = "installdocker"></a>
 
-Explain how to run the automated tests for this system.
+```
+https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
+```
