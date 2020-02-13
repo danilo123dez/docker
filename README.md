@@ -94,6 +94,25 @@ root /var/www/html;
 root /var/www/html/public/;
 ```
 
+### Como criar o container de mysql ?
+
+Para criar o container de mysql, rode o comando abaixo e defina o nome e senha do usuário do seu mysql.
+
+```
+docker run --env MYSQL_ROOT_PASSWORD=123456 --env MYSQL_USER=docker --env MYSQL_PASSWORD="docker123" --name=mysql -d mysql/mysql-server:latest
+```
+
+a tag "--name" será o nome do container. O último parâmetro será difinida a versão do sql, caso queria alguma especifica veja no <a href="https://hub.docker.com/_/mysql"> docker hub </a>, basta escolher uma tag que está no começo do site.
+
+Para **conectar** no mysql deste docker você terá que rodar o comando:
+
+```
+docker inspect nome_container_mysql
+```
+
+Esse comando irá trazer diversas informações, mas o que interessa é a linha no final **"IPAddress"**. Este é o IP local do seu container de mysql, com ele você poderá conectar pelo mysql workbench, dbeaver, etc...
+
+
 ## 🔧 Instalação do Docker <a name = "installdocker"></a>
 
 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository"> Instale o docker aqui! </a>
