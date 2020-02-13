@@ -10,7 +10,7 @@
 
 ## 🧐 Sobre <a name = "sobre"></a>
 
-<p> Esse projeto serve para rodar projetos em PHP, integrado com o Nginx.</p>
+<p> Esse projeto irá auxiliar na criação de containers para rodar projetos em servidor local</p>
 
 ## 🏁 Começando <a name = "comecando"></a>
 
