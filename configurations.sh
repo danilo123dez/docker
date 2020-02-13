@@ -125,6 +125,8 @@ function AddVirtualHostFiles() {
     Separador "Ajustando arquivo do VirtualHost do projeto:";
 
     cp ./vhost/vhost-app.conf /etc/nginx/sites-available/app;
+    rm /etc/nginx/sites-available/default;
+    rm /etc/nginx/sites-enabled/default;
     mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bkp;
     cp ./vhost/nginx.conf /etc/nginx/nginx.conf;
 

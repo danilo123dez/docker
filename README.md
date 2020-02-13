@@ -1,29 +1,118 @@
-<h1> Como criar a imagem </h1>
+<h3 align="center">Docker para projetos PHP 7.2 + Nginx</h3>
 
-<p> Basta rodar o comando abaixo na raiz deste projeto, no mesmo nivel que o arquivo Dockerfile </p>
-<p> docker build . -t <strong> nome da imagem </strong> </p>
+---
 
-<h1> Como criar o container </h1>
+## 📝 Sumário
 
-<p> docker run -it -p 80:80 -v $(pwd)/www:/var/www/html --name <strong> Nome-container </strong> <strong> Nome-imagem </strong> /bin/bash </p>
+- [Sobre](#sobre)
+- [Começando](#comecando)
+- [Instale o docker](#installdocker)
 
-<h1> Não tem o docker instalado ? instale para o ubuntu </h1>
+## 🧐 Sobre <a name = "sobre"></a>
 
-<p style="color:#C8C8C8"> Rode todos os comandos em ordem. </p>
+<p> Esse projeto irá auxiliar na criação de containers para rodar projetos em servidor local</p>
 
-<p> sudo apt-get update </p>
-<p> sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common </p>
-<p> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - </p>
+## 🏁 Começando <a name = "comecando"></a>
 
-<p> 
-    sudo apt-key fingerprint 0EBFCD88 <br>
-    <span style="color:#C8C8C8"> pub   rsa4096 2017-02-22 [SCEA]
-      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
-uid           [ unknown] Docker Release (CE deb) <docker@docker.com>
-sub   rsa4096 2017-02-22 [S] </span>
-</p>
+Antes de começar é bom verificar se você já tem o docker instalado, caso não tenha [Instale aqui](#installdocker)
+
+### Instalando
+
+Para começar, clone o projeto e entre na pasta raiz dele
+
+Primeiro vamos criar a imagem do nosso container. Rode o seguinte comando:
+
+```
+docker build . -t nome_da_imagem
+```
+
+Este processo Este processo pode levar algum tempo, vai depender da velocidade da sua internet.
+
+Em seguida vamos criar o container do nosso projeto. Acesse a pasta do seu projeto que queria rodar e na raiz dele é sempre bom ter uma pasta "www/" que irá conter os arquivos do projeto. Rode o seguinte comando:
+
+```
+docker run -it -p 80:80 -v $(pwd)/www:/var/www/html --name nome_container nome_da_imagem /bin/bash
+```
+
+Note que a parte "$(pwd)/www" irá pegar o seu diretório atual e fazer com que ela linke com a pasta que roda os projetos dentro do container (pasta escolhida nas configurações de nginx). Caso não queria usar a pasta www, basta tira-la do código.
+
+Ao rodar esse comando você "entrará" no container automaticamente.
+
+### Acessando o container
+
+Quando você for acessar o container novamente, basta dar o comando:
+
+```
+docker ps -a
+```
+
+Ele irá lista todos os container criados, listando os ativos e os inativos (para listar apenas os ativas, rode o mesmo comando sem "-a").
+
+Com a lista de containers, copie o nome do seu container e rode o comando:
+
+```
+docker attach nome_container
+```
+
+### Configurações iniciais dentro do container
+
+Ao acessar o container rode os seguintes comandos:
+
+```
+service nginx start
+```
+
+```
+service php7.2-fpm start
+```
+
+Caso queira listar todos os serviços dentro do container rode o comando:
+
+```
+service --status-all
+```
+
+Esses serviços são para que o projeto fique rodando na sua maquina acessando pelo browser a url "localhost"
+
+### Projeto em laravel ? Como rodar ?
+
+Caso o projeto seja em laravel, dentro do container, acesse a pasta 
+
+```
+/etc/nginx/sites-available/
+```
+
+Lá terá um arquivo chamado app, você terá que edita-lo. Na linha que está escrito:
+
+```
+root /var/www/html;
+```
+
+**substitua por:**
+
+```
+root /var/www/html/public/;
+```
+
+### Como criar o container de mysql ?
+
+Para criar o container de mysql, rode o comando abaixo e defina o nome e senha do usuário do seu mysql.
+
+```
+docker run --env MYSQL_ROOT_PASSWORD=123456 --env MYSQL_USER=docker --env MYSQL_PASSWORD="docker123" --name=mysql -d mysql/mysql-server:latest
+```
+
+a tag "--name" será o nome do container. O último parâmetro será difinida a versão do sql, caso queria alguma especifica veja no <a href="https://hub.docker.com/_/mysql"> docker hub </a>, basta escolher uma tag que está no começo do site.
+
+Para **conectar** no mysql deste docker você terá que rodar o comando:
+
+```
+docker inspect nome_container_mysql
+```
+
+Esse comando irá trazer diversas informações, mas o que interessa é a linha no final **"IPAddress"**. Este é o IP local do seu container de mysql, com ele você poderá conectar pelo mysql workbench, dbeaver, etc...
+
+
+## 🔧 Instalação do Docker <a name = "installdocker"></a>
+
+<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository"> Instale o docker aqui! </a>
