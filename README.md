@@ -2,7 +2,7 @@
 
 ---
 
-## 📝 Table of Contents
+## 📝 Sumário
 
 - [Sobre](#sobre)
 - [Começando](#comecando)
