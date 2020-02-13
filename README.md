@@ -40,6 +40,4 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## 🔧 Instalação do Docker <a name = "installdocker"></a>
 
-```
-https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
-```
+<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository"> Instale o docker aqui! </a>
