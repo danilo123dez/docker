@@ -7,6 +7,7 @@
 - [Sobre](#sobre)
 - [Começando](#comecando)
 - [Instale o docker](#installdocker)
+- [Rodar o bash no servidor](#bashserver)
 
 ## 🧐 Sobre <a name = "sobre"></a>
 
@@ -112,6 +113,15 @@ docker inspect nome_container_mysql
 
 Esse comando irá trazer diversas informações, mas o que interessa é a linha no final **"IPAddress"**. Este é o IP local do seu container de mysql, com ele você poderá conectar pelo mysql workbench, dbeaver, etc...
 
+## 👌 Como usar os arquivos bash para rodar no servidor <a name = "bashserver"></a>
+
+Clone o projeto no servidor e na raiz do projeto rode o seguinte comando:
+
+```
+sudo ./configurations.sh prod
+```
+
+Além de instalar as configurações normais de docker local, irá instalar git, docker e criará um container de mysql.
 
 ## 🔧 Instalação do Docker <a name = "installdocker"></a>
 
