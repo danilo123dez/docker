@@ -165,13 +165,6 @@ function InstallUFW(){
     sed  -i "s/\(IPV6 *= *\).*/\1no/" /etc/default/ufw;
 }
 
-function installGit(){
-    AptUpdate;
-    Separador "Instalando GIT";
-    apt install git;
-    git --version;
-}
-
 function installDocker(){
     AptUpdate;
     Separador "Instalando Docker";
@@ -212,7 +205,6 @@ InstallPHP
 InstallSoftwareDependencies
 
 if [ 'prod' = ${1} ]; then
-    installGit;
     installDocker;
     createDockerMysql
 fi
