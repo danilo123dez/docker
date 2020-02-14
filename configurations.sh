@@ -189,7 +189,7 @@ function installDocker(){
 
 function createDockerMysql(){
     Separador "Criando o docker de mysql0"
-    docker run --env MYSQL_ROOT_PASSWORD=123456 --env MYSQL_USER=docker --env MYSQL_PASSWORD="docker123" --name=mysql -d mysql/mysql-server:latest
+    docker run -p 3306:3306 --env MYSQL_ROOT_PASSWORD=123456 --env MYSQL_USER=docker --env MYSQL_PASSWORD="docker123" --name=mysql -d mysql/mysql-server:5.7
 }
 
 AptUpdate;

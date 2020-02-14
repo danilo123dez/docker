@@ -100,7 +100,7 @@ root /var/www/html/public/;
 Para criar o container de mysql, rode o comando abaixo e defina o nome e senha do usuário do seu mysql.
 
 ```
-docker run --env MYSQL_ROOT_PASSWORD=123456 --env MYSQL_USER=docker --env MYSQL_PASSWORD="docker123" --name=mysql -d mysql/mysql-server:latest
+docker run -p 3306:3306 --env MYSQL_ROOT_PASSWORD=123456 --env MYSQL_USER=docker --env MYSQL_PASSWORD="docker123" --name=mysql -d mysql/mysql-server:5.7
 ```
 
 a tag "--name" será o nome do container. O último parâmetro será difinida a versão do sql, caso queria alguma especifica veja no <a href="https://hub.docker.com/_/mysql"> docker hub </a>, basta escolher uma tag que está no começo do site.
