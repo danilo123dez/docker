@@ -165,6 +165,40 @@ function InstallUFW(){
     sed  -i "s/\(IPV6 *= *\).*/\1no/" /etc/default/ufw;
 }
 
+function installGit(){
+    AptUpdate;
+    Separador "Instalando GIT";
+    apt install git;
+    git --version;
+}
+
+function installDocker(){
+    AptUpdate;
+    Separador "Instalando Docker";
+    sudo apt-get install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg-agent \
+        software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;
+    sudo apt-key fingerprint 0EBFCD88;
+    sudo add-apt-repository \
+        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) \
+        stable";
+    AptUpdate;
+    sudo apt-get install docker-ce docker-ce-cli containerd.io;
+    sudo apt-get install docker-ce=5:18.09.1~3-0~ubuntu-xenial docker-ce-cli=5:18.09.1~3-0~ubuntu-xenial containerd.io
+    sudo docker run hello-world
+    Separador "Docker instalado"
+}
+
+function createDockerMysql(){
+    separador "Criando o docker de mysql0"
+    docker run --env MYSQL_ROOT_PASSWORD=123456 --env MYSQL_USER=docker --env MYSQL_PASSWORD="docker123" --name=mysql -d mysql/mysql-server:latest
+}
+
 AptUpdate;
 AddExtraPackages 1;
 InstallUFW 1;
@@ -176,3 +210,11 @@ AdjustVirtualHostFolders
 AddRepositories
 InstallPHP
 InstallSoftwareDependencies
+
+if [ 'prod' = ${1} ]; then
+    installGit;
+    installDocker;
+    createDockerMysql
+fi
+
+Separador "Todas configurações feita com sucesso!";
