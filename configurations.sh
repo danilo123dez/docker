@@ -3,8 +3,6 @@
 # including functions.sh file
 source "$(dirname "$0")"/functions.sh
 
-Separador 'Bash do DanDan' ${BLUE};
-
 function AddRepositories() {
     AptUpdate
 
