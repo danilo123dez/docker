@@ -10,6 +10,8 @@ function AddRepositories() {
 
     Separador "ativando os repositórios Universe e Multiverse" ${LIGHT_GREEN};
 
+    apt -y install software-properties-common;
+
     add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ xenial universe multiverse" && \
     echo -ne "\n" | add-apt-repository ppa:ondrej/php  && \
     echo -ne "\n" | add-apt-repository ppa:ondrej/nginx  && \
@@ -23,22 +25,24 @@ function AddRepositories() {
 
 function InstallPHP() {
 
-    Separador "Instalando PHP 7.2 e as principais extensões utilizadas";
+    Separador "Instalando PHP 7.4 e as principais extensões utilizadas";
 
-    apt-get -y install php7.2-fpm;
+    apt-get -y install tzdata;
+    apt-get -y install php7.4-fpm;
 
     service nginx restart;
 
     # extensions
 
-    apt-get -y install php7.2-mbstring;
-    apt-get -y install php7.2-bcmath;
-    apt-get -y install php7.2-xml;
-    apt-get -y install php7.2-curl;
-    apt-get -y install php7.2-mysql;
+    apt-get -y install php7.4-mbstring;
+    apt-get -y install php7.4-bcmath;
+    apt-get -y install php7.4-xml;
+    apt-get -y install php7.4-curl;
+    apt-get -y install php7.4-mysql;
 
     # @bugfix failed restart because it wans't running
-    service php7.2-fpm stop && service php7.2-fpm start;
+    service php7.4 stop && service php7.4 start;
+    apt-get install nginx php7.4-fpm;
     service nginx restart;
 
 }
@@ -153,6 +157,8 @@ function AddExtraPackages() {
 
     Separador "Instalando pacotes que auxiliam no gerenciamento e debug de conflitos de infraestrutura" ${LIGHT_GREEN};
     apt-get install -y net-tools;
+
+    apt-get install -y gnupg2;
 }
 
 function InstallUFW(){
