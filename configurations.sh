@@ -79,6 +79,11 @@ function InstallNginx() {
     echo "deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx" >> /etc/apt/sources.list && apt-key add ./nginx_signing.key;
 
     AptUpdate;
+    
+    echo "deb http://security.ubuntu.com/ubuntu bionic-security main" | sudo tee -a /etc/apt/sources.list.d/bionic.list;
+    sudo apt update;
+    apt-cache policy libssl1.0-dev;
+    sudo apt-get install libssl1.0-dev 
 
     apt-get install -y nginx && systemctl enable nginx;
 
