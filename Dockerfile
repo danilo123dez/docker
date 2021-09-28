@@ -26,6 +26,6 @@ RUN cd / && ./configurations.sh -d -iall
 WORKDIR /var/www/html
 
 EXPOSE 80 443
-CMD service nginx start && service php7.4-fpm start && /bin/bash
+CMD service nginx start && service php7.3-fpm start && /bin/bash
 
 #

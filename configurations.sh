@@ -25,24 +25,24 @@ function AddRepositories() {
 
 function InstallPHP() {
 
-    Separador "Instalando PHP 7.4 e as principais extensões utilizadas";
+    Separador "Instalando PHP 7.3 e as principais extensões utilizadas";
 
     apt-get -y install tzdata;
-    apt-get -y install php7.4-fpm;
+    apt-get -y install php7.3-fpm;
 
     service nginx restart;
 
     # extensions
 
-    apt-get -y install php7.4-mbstring;
-    apt-get -y install php7.4-bcmath;
-    apt-get -y install php7.4-xml;
-    apt-get -y install php7.4-curl;
-    apt-get -y install php7.4-mysql;
+    apt-get -y install php7.3-mbstring;
+    apt-get -y install php7.3-bcmath;
+    apt-get -y install php7.3-xml;
+    apt-get -y install php7.3-curl;
+    apt-get -y install php7.3-mysql;
 
     # @bugfix failed restart because it wans't running
-    service php7.4 stop && service php7.4 start;
-    apt-get install nginx php7.4-fpm;
+    service php7.3 stop && service php7.3 start;
+    apt-get install nginx php7.3-fpm;
     service nginx restart;
 
 }
